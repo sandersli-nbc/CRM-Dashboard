@@ -1,0 +1,1656 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20211.22.0108.1053                               -->
+<workbook source-build='2021.1.11 (20211.22.0108.1053)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <WindowsPersistSimpleIdentifiers />
+    <ZoneBackgroundTransparency />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='CRM_KPI_Base_v3_Jan23 (SLi_sandbox)' inline='true' name='federated.0d9et6i1aohu7m1dd089q0brzqu7' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='BigQuery' name='bigquery.137ycyr155rxkm1513o1r1jvdhpi'>
+            <connection CATALOG='nbcu-ds-sandbox-a-001' EXECCATALOG='nbcu-ds-sandbox-a-001' authentication='yes' bq-dataset-fetch-rows='' bq-fetch-rows='' bq-fetch-tasks='' bq-large-fetch-rows='' bq-project-fetch-rows='' bq-response-rows='' class='bigquery' connection-dialect='google-sql' project='nbcu-ds-sandbox-a' schema='SLi_sandbox' server='' server-oauth='' username='sanders.li@sky.uk' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation all='true' name='CRM_KPI_Base_v3_Jan23+' type='union'>
+          <relation connection='bigquery.137ycyr155rxkm1513o1r1jvdhpi' name='CRM_KPI_Base_v3_Jan23' table='[nbcu-ds-sandbox-a-001.SLi_sandbox].[CRM_KPI_Base_v3_Jan23]' type='table' />
+          <relation connection='bigquery.137ycyr155rxkm1513o1r1jvdhpi' name='CRM_KPI_Base_v3_Feb23' table='[nbcu-ds-sandbox-a-001.SLi_sandbox].[CRM_KPI_Base_v3_Feb23]' type='table' />
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation all='true' name='CRM_KPI_Base_v3_Jan23+' type='union'>
+          <relation connection='bigquery.137ycyr155rxkm1513o1r1jvdhpi' name='CRM_KPI_Base_v3_Jan23' table='[nbcu-ds-sandbox-a-001.SLi_sandbox].[CRM_KPI_Base_v3_Jan23]' type='table' />
+          <relation connection='bigquery.137ycyr155rxkm1513o1r1jvdhpi' name='CRM_KPI_Base_v3_Feb23' table='[nbcu-ds-sandbox-a-001.SLi_sandbox].[CRM_KPI_Base_v3_Feb23]' type='table' />
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>Report_Month</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Report_Month]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Report_Month</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Account_Type</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Account_Type]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Account_Type</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>aid</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[aid]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>aid</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>cohort</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[cohort]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>cohort</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>viewers</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[viewers]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>viewers</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Viewing_Time</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Viewing_Time]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Viewing_Time</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Repertoire_Pavo_Method</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Repertoire_Pavo_Method]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Repertoire_Pavo_Method</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Distinct_Viewing_Sessions</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Distinct_Viewing_Sessions]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Distinct_Viewing_Sessions</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Winback_Denom</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Winback_Denom]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Winback_Denom</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Winback_Num</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Winback_Num]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Winback_Num</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Save_Denom</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Save_Denom]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Save_Denom</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Save_Num</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Save_Num]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Save_Num</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Upgrade_Denom</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Upgrade_Denom]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Upgrade_Denom</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Upgrade_Num</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Upgrade_Num]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Upgrade_Num</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>New_Upgrade_Denom</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[New_Upgrade_Denom]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>New_Upgrade_Denom</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>New_Upgrade_Num</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[New_Upgrade_Num]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>New_Upgrade_Num</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Paid_Winbacks_Denom</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Paid_Winbacks_Denom]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Paid_Winbacks_Denom</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Paid_Winbacks_Num</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Paid_Winbacks_Num]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Paid_Winbacks_Num</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Paid_Churn_Denom</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Paid_Churn_Denom]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Paid_Churn_Denom</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Paid_Churn_Num</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Paid_Churn_Num]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Paid_Churn_Num</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>EOM_Paid_Churn_Denom</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[EOM_Paid_Churn_Denom]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>EOM_Paid_Churn_Denom</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>EOM_Paid_Churn_Num</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[EOM_Paid_Churn_Num]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>EOM_Paid_Churn_Num</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Table_Name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Table_Name]</local-name>
+            <parent-name>[CRM_KPI_Base_v3_Jan23+]</parent-name>
+            <remote-alias>Table_Name</remote-alias>
+            <ordinal>22</ordinal>
+            <caption>Table Name</caption>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='string' name='[:Measure Names]' role='dimension' type='nominal'>
+        <aliases>
+          <alias key='&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649991614466:qk]&quot;' value='Targeted' />
+          <alias key='&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649992134659:qk]&quot;' value='Holdout' />
+        </aliases>
+      </column>
+      <column caption='Account Type' datatype='string' name='[Account_Type]' role='dimension' type='nominal' />
+      <column caption='Paid Churn Incremental' datatype='real' name='[Calculation_1239052851957125120]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='([Calculation_1561904649991614466]-[Calculation_1561904649992134659]) * &#13;&#10;COUNTD(&#13;&#10;    IF ([cohort] = &apos;Email_Targeted&apos;) THEN [Paid_Churn_Denom]&#13;&#10;    ELSE NULL &#13;&#10;    END&#13;&#10;)' />
+      </column>
+      <column caption='Baseline' datatype='integer' name='[Calculation_1239052851962691591]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='COUNTD([aid])' />
+      </column>
+      <column caption='Paid Churn Baseline' datatype='integer' name='[Calculation_1239052851962728456]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='COUNTD(IF [cohort]=&apos;Email_Targeted&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+      </column>
+      <column caption='Paid Churn' datatype='real' name='[Calculation_1561904649982152704]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='COUNTD([Paid_Churn_Num])/COUNTD([Paid_Churn_Denom])' />
+      </column>
+      <column caption='Paid Churn Targeted' datatype='real' name='[Calculation_1561904649991614466]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='COUNTD(IF [cohort] = &apos;Email_Targeted&apos; THEN [Paid_Churn_Num] ELSE NULL END) /&#13;&#10;COUNTD(IF [cohort] = &apos;Email_Targeted&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+      </column>
+      <column caption='Paid Churn Holdout' datatype='real' name='[Calculation_1561904649992134659]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='COUNTD(IF [cohort] = &apos;Holdout&apos; THEN [Paid_Churn_Num] ELSE NULL END) /&#13;&#10;COUNTD(IF [cohort] = &apos;Holdout&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+      </column>
+      <column caption='Paid Churn Lift Index' datatype='real' name='[Calculation_1561904649992499204]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[Calculation_1561904649991614466]/[Calculation_1561904649992134659] * 100' />
+      </column>
+      <column caption='Paid Churn Total' datatype='real' name='[Calculation_1737263560745586688]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[Calculation_1239052851962728456] + [Calculation_1239052851957125120]' />
+      </column>
+      <column caption='Paid Churn Incremental +' datatype='real' name='[Calculation_1737263560759312387]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF ([Calculation_1239052851957125120] &gt; 0) THEN [Calculation_1239052851957125120] &#13;&#10;ELSE NULL&#13;&#10;END' />
+      </column>
+      <column caption='Paid Churn Incremental -' datatype='real' name='[Calculation_1737263560759615492]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='If [Calculation_1239052851957125120] &lt; 0 THEN -[Calculation_1239052851957125120] &#13;&#10;ELSE NULL&#13;&#10;END' />
+      </column>
+      <column caption='Paid Churn Lift +/-' datatype='boolean' name='[Calculation_1737263560781012998]' role='measure' type='nominal'>
+        <calculation class='tableau' formula='IF [Calculation_1561904649992499204] &gt;= 100 THEN TRUE&#13;&#10;ELSE FALSE&#13;&#10;END' />
+      </column>
+      <column caption='Paid Churn Lift Index Normalized' datatype='real' name='[Calculation_1737263560840175626]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[Calculation_1561904649992499204] - 100' />
+      </column>
+      <column caption='Distinct Viewing Sessions' datatype='integer' name='[Distinct_Viewing_Sessions]' role='measure' type='quantitative' />
+      <column caption='EOM Paid Churn Denom' datatype='string' name='[EOM_Paid_Churn_Denom]' role='dimension' type='nominal' />
+      <column caption='EOM Paid Churn Num' datatype='string' name='[EOM_Paid_Churn_Num]' role='dimension' type='nominal' />
+      <column caption='New Upgrade Denom' datatype='string' name='[New_Upgrade_Denom]' role='dimension' type='nominal' />
+      <column caption='New Upgrade Num' datatype='string' name='[New_Upgrade_Num]' role='dimension' type='nominal' />
+      <column caption='Paid Churn Incremental - (Label)' datatype='string' name='[Paid Churn Incremental - (copy)_1737263560789893129]' role='measure' type='nominal'>
+        <calculation class='tableau' formula='If [Calculation_1239052851957125120] &lt; 0 THEN &apos;-&apos;&#13;&#10;ELSE NULL&#13;&#10;END' />
+      </column>
+      <column caption='Paid Churn Denom' datatype='string' name='[Paid_Churn_Denom]' role='dimension' type='nominal' />
+      <column caption='Paid Churn Num' datatype='string' name='[Paid_Churn_Num]' role='dimension' type='nominal' />
+      <column caption='Paid Winbacks Denom' datatype='string' name='[Paid_Winbacks_Denom]' role='dimension' type='nominal' />
+      <column caption='Paid Winbacks Num' datatype='string' name='[Paid_Winbacks_Num]' role='dimension' type='nominal' />
+      <column caption='Repertoire Pavo Method' datatype='integer' name='[Repertoire_Pavo_Method]' role='measure' type='quantitative' />
+      <column caption='Report Month' datatype='date' datatype-customized='true' name='[Report_Month]' role='dimension' type='ordinal' />
+      <column caption='Save Denom' datatype='string' name='[Save_Denom]' role='dimension' type='nominal' />
+      <column caption='Save Num' datatype='string' name='[Save_Num]' role='dimension' type='nominal' />
+      <column caption='Table Name' datatype='string' name='[Table_Name]' role='dimension' type='nominal' />
+      <column caption='Upgrade Denom' datatype='string' name='[Upgrade_Denom]' role='dimension' type='nominal' />
+      <column caption='Upgrade Num' datatype='string' name='[Upgrade_Num]' role='dimension' type='nominal' />
+      <column caption='Viewing Time' datatype='real' name='[Viewing_Time]' role='measure' type='quantitative' />
+      <column caption='Winback Denom' datatype='string' name='[Winback_Denom]' role='dimension' type='nominal' />
+      <column caption='Winback Num' datatype='string' name='[Winback_Num]' role='dimension' type='nominal' />
+      <_.fcp.ObjectModelTableType.true...column caption='CRM_KPI_Base_v3_Jan23' datatype='table' name='[__tableau_internal_object_id__].[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]' role='measure' type='quantitative' />
+      <column caption='Aid' datatype='string' name='[aid]' role='dimension' type='nominal' />
+      <column caption='Cohort' datatype='string' name='[cohort]' role='dimension' type='nominal'>
+        <aliases>
+          <alias key='&quot;Email_Targeted&quot;' value='Email Targeted' />
+        </aliases>
+      </column>
+      <column caption='Viewers' datatype='string' name='[viewers]' role='dimension' type='nominal' />
+      <column-instance column='[__tableau_internal_object_id__].[CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[aid]' derivation='CountD' name='[ctd:aid:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[cohort]' derivation='None' name='[none:cohort:nk]' pivot='key' type='nominal' />
+      <column-instance column='[Distinct_Viewing_Sessions]' derivation='Sum' name='[sum:Distinct_Viewing_Sessions:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Repertoire_Pavo_Method]' derivation='Sum' name='[sum:Repertoire_Pavo_Method:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Viewing_Time]' derivation='Sum' name='[sum:Viewing_Time:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1239052851957125120]' derivation='User' name='[usr:Calculation_1239052851957125120:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1239052851962691591]' derivation='User' name='[usr:Calculation_1239052851962691591:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1239052851962728456]' derivation='User' name='[usr:Calculation_1239052851962728456:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1561904649982152704]' derivation='User' name='[usr:Calculation_1561904649982152704:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1561904649991614466]' derivation='User' name='[usr:Calculation_1561904649991614466:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1561904649992134659]' derivation='User' name='[usr:Calculation_1561904649992134659:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1561904649992499204]' derivation='User' name='[usr:Calculation_1561904649992499204:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1737263560745586688]' derivation='User' name='[usr:Calculation_1737263560745586688:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1737263560759312387]' derivation='User' name='[usr:Calculation_1737263560759312387:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1737263560759615492]' derivation='User' name='[usr:Calculation_1737263560759615492:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1737263560781012998]' derivation='User' name='[usr:Calculation_1737263560781012998:nk]' pivot='key' type='nominal' />
+      <column-instance column='[Calculation_1737263560840175626]' derivation='User' name='[usr:Calculation_1737263560840175626:qk]' pivot='key' type='quantitative' />
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:cohort:nk]' type='palette'>
+            <map to='#59a14f'>
+              <bucket>&quot;Email_Targeted&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;Holdout&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[usr:Calculation_1737263560781012998:nk]' type='palette'>
+            <map to='#59a14f'>
+              <bucket>true</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>false</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[ctd:aid:qk]&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7]&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1239052851957125120:qk]&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759312387:qk]&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649991614466:qk]&quot;</bucket>
+            </map>
+            <map to='#86bcb6'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[sum:Repertoire_Pavo_Method:qk]&quot;</bucket>
+            </map>
+            <map to='#8cd17d'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[sum:Distinct_Viewing_Sessions:qk]&quot;</bucket>
+            </map>
+            <map to='#a0cbe8'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1239052851962691591:qk]&quot;</bucket>
+            </map>
+            <map to='#bab0ac'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1239052851962728456:qk]&quot;</bucket>
+            </map>
+            <map to='#bab0ac'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560745586688:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649992499204:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759615492:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560840175626:qk]&quot;</bucket>
+            </map>
+            <map to='#f1ce63'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649992134659:qk]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649982152704:qk]&quot;</bucket>
+            </map>
+            <map to='#ff9d9a'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[sum:Viewing_Time:qk]&quot;</bucket>
+            </map>
+            <map to='#ffbe7d'>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[__tableau_internal_object_id__].[cnt:CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60:qk]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='CRM_KPI_Base_v3_Jan23' id='CRM_KPI_Base_v3_Jan23_23D15C505FAD4AF4B2F7C5502AA7EE60'>
+            <properties context=''>
+              <relation all='true' name='CRM_KPI_Base_v3_Jan23+' type='union'>
+                <relation connection='bigquery.137ycyr155rxkm1513o1r1jvdhpi' name='CRM_KPI_Base_v3_Jan23' table='[nbcu-ds-sandbox-a-001.SLi_sandbox].[CRM_KPI_Base_v3_Jan23]' type='table' />
+                <relation connection='bigquery.137ycyr155rxkm1513o1r1jvdhpi' name='CRM_KPI_Base_v3_Feb23' table='[nbcu-ds-sandbox-a-001.SLi_sandbox].[CRM_KPI_Base_v3_Feb23]' type='table' />
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <shared-views>
+    <shared-view name='federated.0d9et6i1aohu7m1dd089q0brzqu7'>
+      <datasources>
+        <datasource caption='CRM_KPI_Base_v3_Jan23 (SLi_sandbox)' name='federated.0d9et6i1aohu7m1dd089q0brzqu7' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0d9et6i1aohu7m1dd089q0brzqu7'>
+        <column caption='Account Type' datatype='string' name='[Account_Type]' role='dimension' type='nominal' />
+        <column caption='Report Month' datatype='date' datatype-customized='true' name='[Report_Month]' role='dimension' type='ordinal' />
+        <column-instance column='[Report_Month]' derivation='MY' name='[my:Report_Month:ok]' pivot='key' type='ordinal' />
+        <column-instance column='[Account_Type]' derivation='None' name='[none:Account_Type:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <filter class='categorical' column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[my:Report_Month:ok]'>
+        <groupfilter function='level-members' level='[my:Report_Month:ok]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+      </filter>
+      <filter class='categorical' column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:Account_Type:nk]'>
+        <groupfilter function='level-members' level='[none:Account_Type:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+      </filter>
+    </shared-view>
+  </shared-views>
+  <actions>
+    <action caption='Highlight 1 (generated)' name='[Action1_24F3DDB14131420B9F7466C35B1B48FB]'>
+      <activation auto-clear='true' type='on-select' />
+      <source type='sheet' worksheet='Paid Churn FY' />
+      <command command='tsc:brush'>
+        <param name='field-captions' value='Measure Names' />
+        <param name='target' value='Paid Churn FY' />
+      </command>
+    </action>
+  </actions>
+  <worksheets>
+    <worksheet name='Paid Churn FY'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontsize='12'>&lt;Sheet Name&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='CRM_KPI_Base_v3_Jan23 (SLi_sandbox)' name='federated.0d9et6i1aohu7m1dd089q0brzqu7' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0d9et6i1aohu7m1dd089q0brzqu7'>
+            <column caption='Account Type' datatype='string' name='[Account_Type]' role='dimension' type='nominal' />
+            <column caption='Paid Churn Targeted' datatype='real' name='[Calculation_1561904649991614466]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNTD(IF [cohort] = &apos;Email_Targeted&apos; THEN [Paid_Churn_Num] ELSE NULL END) /&#13;&#10;COUNTD(IF [cohort] = &apos;Email_Targeted&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+            </column>
+            <column caption='Paid Churn Holdout' datatype='real' name='[Calculation_1561904649992134659]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNTD(IF [cohort] = &apos;Holdout&apos; THEN [Paid_Churn_Num] ELSE NULL END) /&#13;&#10;COUNTD(IF [cohort] = &apos;Holdout&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+            </column>
+            <column caption='Paid Churn Denom' datatype='string' name='[Paid_Churn_Denom]' role='dimension' type='nominal' />
+            <column caption='Paid Churn Num' datatype='string' name='[Paid_Churn_Num]' role='dimension' type='nominal' />
+            <column caption='Report Month' datatype='date' datatype-customized='true' name='[Report_Month]' role='dimension' type='ordinal' />
+            <column caption='Cohort' datatype='string' name='[cohort]' role='dimension' type='nominal'>
+              <aliases>
+                <alias key='&quot;Email_Targeted&quot;' value='Email Targeted' />
+              </aliases>
+            </column>
+            <column-instance column='[Report_Month]' derivation='MY' name='[my:Report_Month:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Account_Type]' derivation='None' name='[none:Account_Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1561904649991614466]' derivation='User' name='[usr:Calculation_1561904649991614466:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1561904649992134659]' derivation='User' name='[usr:Calculation_1561904649992134659:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649991614466:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649992134659:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649991614466:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649992134659:qk]&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <slices>
+            <column>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]</column>
+            <column>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[my:Report_Month:ok]</column>
+            <column>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:Account_Type:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='width' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values]' value='90' />
+            <format attr='title' class='0' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values]' scope='cols' value='' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' value='19' />
+            <format attr='text-format' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values]' value='p0.00%' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' value='88' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='display' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' value='true' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-color' scope='cols' value='#ffffff' />
+            <format attr='stroke-size' scope='cols' value='5' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='col-width' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' value='140' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='6' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' />
+              <text column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values]' />
+            </encodings>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='auto' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='shape' value=':filled/diamond' />
+                <format attr='size' value='1.5382320880889893' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]</rows>
+        <cols>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values]</cols>
+      </table>
+      <simple-id uuid='{FFA50DFD-19B5-4A61-8DFD-AD7D7F8B9903}' />
+    </worksheet>
+    <worksheet name='Paid Churn FY Incremental'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontsize='12'>&lt;Sheet Name&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='CRM_KPI_Base_v3_Jan23 (SLi_sandbox)' name='federated.0d9et6i1aohu7m1dd089q0brzqu7' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0d9et6i1aohu7m1dd089q0brzqu7'>
+            <column caption='Account Type' datatype='string' name='[Account_Type]' role='dimension' type='nominal' />
+            <column caption='Paid Churn Incremental' datatype='real' name='[Calculation_1239052851957125120]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='([Calculation_1561904649991614466]-[Calculation_1561904649992134659]) * &#13;&#10;COUNTD(&#13;&#10;    IF ([cohort] = &apos;Email_Targeted&apos;) THEN [Paid_Churn_Denom]&#13;&#10;    ELSE NULL &#13;&#10;    END&#13;&#10;)' />
+            </column>
+            <column caption='Paid Churn Baseline' datatype='integer' name='[Calculation_1239052851962728456]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNTD(IF [cohort]=&apos;Email_Targeted&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+            </column>
+            <column caption='Paid Churn Targeted' datatype='real' name='[Calculation_1561904649991614466]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNTD(IF [cohort] = &apos;Email_Targeted&apos; THEN [Paid_Churn_Num] ELSE NULL END) /&#13;&#10;COUNTD(IF [cohort] = &apos;Email_Targeted&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+            </column>
+            <column caption='Paid Churn Holdout' datatype='real' name='[Calculation_1561904649992134659]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNTD(IF [cohort] = &apos;Holdout&apos; THEN [Paid_Churn_Num] ELSE NULL END) /&#13;&#10;COUNTD(IF [cohort] = &apos;Holdout&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+            </column>
+            <column caption='Paid Churn Total' datatype='real' name='[Calculation_1737263560745586688]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[Calculation_1239052851962728456] + [Calculation_1239052851957125120]' />
+            </column>
+            <column caption='Paid Churn Incremental +' datatype='real' name='[Calculation_1737263560759312387]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF ([Calculation_1239052851957125120] &gt; 0) THEN [Calculation_1239052851957125120] &#13;&#10;ELSE NULL&#13;&#10;END' />
+            </column>
+            <column caption='Paid Churn Incremental -' datatype='real' name='[Calculation_1737263560759615492]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='If [Calculation_1239052851957125120] &lt; 0 THEN -[Calculation_1239052851957125120] &#13;&#10;ELSE NULL&#13;&#10;END' />
+            </column>
+            <column caption='Paid Churn Incremental - (Label)' datatype='string' name='[Paid Churn Incremental - (copy)_1737263560789893129]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='If [Calculation_1239052851957125120] &lt; 0 THEN &apos;-&apos;&#13;&#10;ELSE NULL&#13;&#10;END' />
+            </column>
+            <column caption='Paid Churn Denom' datatype='string' name='[Paid_Churn_Denom]' role='dimension' type='nominal' />
+            <column caption='Paid Churn Num' datatype='string' name='[Paid_Churn_Num]' role='dimension' type='nominal' />
+            <column caption='Report Month' datatype='date' datatype-customized='true' name='[Report_Month]' role='dimension' type='ordinal' />
+            <column caption='Cohort' datatype='string' name='[cohort]' role='dimension' type='nominal'>
+              <aliases>
+                <alias key='&quot;Email_Targeted&quot;' value='Email Targeted' />
+              </aliases>
+            </column>
+            <column-instance column='[Report_Month]' derivation='MY' name='[my:Report_Month:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Account_Type]' derivation='None' name='[none:Account_Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1239052851962728456]' derivation='User' name='[usr:Calculation_1239052851962728456:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1737263560745586688]' derivation='User' name='[usr:Calculation_1737263560745586688:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1737263560759312387]' derivation='User' name='[usr:Calculation_1737263560759312387:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1737263560759615492]' derivation='User' name='[usr:Calculation_1737263560759615492:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Paid Churn Incremental - (copy)_1737263560789893129]' derivation='User' name='[usr:Paid Churn Incremental - (copy)_1737263560789893129:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759615492:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759312387:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560745586688:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759615492:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759312387:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[sum:Calculation_4681069666459918348:qk]&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <slices>
+            <column>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[my:Report_Month:ok]</column>
+            <column>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]</column>
+            <column>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:Account_Type:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='width' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values]' value='79' />
+            <encoding attr='space' class='0' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values]' field-type='quantitative' fold='true' scope='cols' synchronized='true' type='space' />
+            <format attr='display' class='0' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values]' scope='cols' value='false' />
+            <format attr='height' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values]' value='35' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' value='19' />
+            <format attr='height' value='90' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width-header' value='10' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='display' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' value='false' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='show-null-value-warning' value='false' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-color' scope='cols' value='#ffffff' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='col-width' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' value='140' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='11' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text />
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='shape' value=':filled/diamond' />
+                <format attr='size' value='1.5162431001663208' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='12' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560745586688:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' />
+              <text column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560745586688:qk]' />
+              <text column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759312387:qk]' />
+              <text column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759615492:qk]' />
+              <text column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1239052851962728456:qk]' />
+              <text column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Paid Churn Incremental - (copy)_1737263560789893129:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text />
+            </customized-tooltip>
+            <customized-label>
+              <formatted-text>
+                <run fontsize='11'>  Baseline:</run>
+                <run bold='true' fontsize='11'><![CDATA[ <[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1239052851962728456:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontsize='11'>  Program Total: </run>
+                <run bold='true' fontsize='11'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560745586688:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontsize='11'>  Incremental: </run>
+                <run bold='true' fontcolor='#e15759' fontsize='11'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Paid Churn Incremental - (copy)_1737263560789893129:nk]>]]></run>
+                <run bold='true' fontcolor='#e15759' fontsize='11'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759615492:qk]>]]></run>
+                <run bold='true' fontcolor='#428e23' fontsize='11'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759312387:qk]>]]></run>
+                <run>Æ&#10;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='left' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='shape' value=':filled/diamond' />
+                <format attr='size' value='1.5162431001663208' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='13' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text />
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='shape' value=':filled/diamond' />
+                <format attr='size' value='1.5162431001663208' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols>([federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560745586688:qk] + [federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values])</cols>
+      </table>
+      <simple-id uuid='{184D8C5B-68F1-4EE0-AC77-F8EBCF310AD4}' />
+    </worksheet>
+    <worksheet name='Paid Churn Lift'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='CRM_KPI_Base_v3_Jan23 (SLi_sandbox)' name='federated.0d9et6i1aohu7m1dd089q0brzqu7' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0d9et6i1aohu7m1dd089q0brzqu7'>
+            <column caption='Account Type' datatype='string' name='[Account_Type]' role='dimension' type='nominal' />
+            <column caption='Paid Churn Targeted' datatype='real' name='[Calculation_1561904649991614466]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNTD(IF [cohort] = &apos;Email_Targeted&apos; THEN [Paid_Churn_Num] ELSE NULL END) /&#13;&#10;COUNTD(IF [cohort] = &apos;Email_Targeted&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+            </column>
+            <column caption='Paid Churn Holdout' datatype='real' name='[Calculation_1561904649992134659]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNTD(IF [cohort] = &apos;Holdout&apos; THEN [Paid_Churn_Num] ELSE NULL END) /&#13;&#10;COUNTD(IF [cohort] = &apos;Holdout&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+            </column>
+            <column caption='Paid Churn Lift Index' datatype='real' name='[Calculation_1561904649992499204]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[Calculation_1561904649991614466]/[Calculation_1561904649992134659] * 100' />
+            </column>
+            <column caption='Paid Churn Lift +/-' datatype='boolean' name='[Calculation_1737263560781012998]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='IF [Calculation_1561904649992499204] &gt;= 100 THEN TRUE&#13;&#10;ELSE FALSE&#13;&#10;END' />
+            </column>
+            <column caption='Paid Churn Denom' datatype='string' name='[Paid_Churn_Denom]' role='dimension' type='nominal' />
+            <column caption='Paid Churn Num' datatype='string' name='[Paid_Churn_Num]' role='dimension' type='nominal' />
+            <column caption='Report Month' datatype='date' datatype-customized='true' name='[Report_Month]' role='dimension' type='ordinal' />
+            <column caption='Cohort' datatype='string' name='[cohort]' role='dimension' type='nominal'>
+              <aliases>
+                <alias key='&quot;Email_Targeted&quot;' value='Email Targeted' />
+              </aliases>
+            </column>
+            <column-instance column='[Report_Month]' derivation='MY' name='[my:Report_Month:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Account_Type]' derivation='None' name='[none:Account_Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1561904649992499204]' derivation='User' name='[usr:Calculation_1561904649992499204:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1737263560781012998]' derivation='User' name='[usr:Calculation_1737263560781012998:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <slices>
+            <column>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[my:Report_Month:ok]</column>
+            <column>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:Account_Type:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649992499204:qk]' />
+              <color column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560781012998:nk]' />
+            </encodings>
+            <customized-label>
+              <formatted-text>
+                <run fontsize='10'>Lift Index</run>
+                <run>Æ&#10;</run>
+                <run bold='true' fontsize='12'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649992499204:qk]>]]></run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{FA60353A-18AE-42A5-A7D0-00431B6708F4}' />
+    </worksheet>
+    <worksheet name='Paid Churn Monthly'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='CRM_KPI_Base_v3_Jan23 (SLi_sandbox)' name='federated.0d9et6i1aohu7m1dd089q0brzqu7' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0d9et6i1aohu7m1dd089q0brzqu7'>
+            <column caption='Account Type' datatype='string' name='[Account_Type]' role='dimension' type='nominal' />
+            <column caption='Paid Churn' datatype='real' name='[Calculation_1561904649982152704]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNTD([Paid_Churn_Num])/COUNTD([Paid_Churn_Denom])' />
+            </column>
+            <column caption='Paid Churn Targeted' datatype='real' name='[Calculation_1561904649991614466]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNTD(IF [cohort] = &apos;Email_Targeted&apos; THEN [Paid_Churn_Num] ELSE NULL END) /&#13;&#10;COUNTD(IF [cohort] = &apos;Email_Targeted&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+            </column>
+            <column caption='Paid Churn Holdout' datatype='real' name='[Calculation_1561904649992134659]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNTD(IF [cohort] = &apos;Holdout&apos; THEN [Paid_Churn_Num] ELSE NULL END) /&#13;&#10;COUNTD(IF [cohort] = &apos;Holdout&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+            </column>
+            <column caption='Paid Churn Lift Index' datatype='real' name='[Calculation_1561904649992499204]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[Calculation_1561904649991614466]/[Calculation_1561904649992134659] * 100' />
+            </column>
+            <column caption='Paid Churn Lift Index Normalized' datatype='real' name='[Calculation_1737263560840175626]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[Calculation_1561904649992499204] - 100' />
+            </column>
+            <column caption='Paid Churn Denom' datatype='string' name='[Paid_Churn_Denom]' role='dimension' type='nominal' />
+            <column caption='Paid Churn Num' datatype='string' name='[Paid_Churn_Num]' role='dimension' type='nominal' />
+            <column caption='Report Month' datatype='date' datatype-customized='true' name='[Report_Month]' role='dimension' type='ordinal' />
+            <column caption='Cohort' datatype='string' name='[cohort]' role='dimension' type='nominal'>
+              <aliases>
+                <alias key='&quot;Email_Targeted&quot;' value='Email Targeted' />
+              </aliases>
+            </column>
+            <column-instance column='[Report_Month]' derivation='MY' name='[my:Report_Month:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Account_Type]' derivation='None' name='[none:Account_Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[cohort]' derivation='None' name='[none:cohort:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Report_Month]' derivation='Month-Trunc' name='[tmn:Report_Month:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1561904649982152704]' derivation='User' name='[usr:Calculation_1561904649982152704:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1561904649992499204]' derivation='User' name='[usr:Calculation_1561904649992499204:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1737263560840175626]' derivation='User' name='[usr:Calculation_1737263560840175626:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:Account_Type:nk]</column>
+            <column>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[my:Report_Month:ok]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560840175626:qk]' field-type='quantitative' fold='true' max='100.0' min='-100.0' range-type='fixed' scope='rows' type='space' />
+            <format attr='display' class='0' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560840175626:qk]' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='mark'>
+            <encoding attr='color' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649992499204:qk]' type='custom-interpolated'>
+              <color-palette custom='true' name='' type='ordered-diverging'>
+                <color>#ef1541</color>
+                <color>#ed2850</color>
+                <color>#eb3b5f</color>
+                <color>#e94e6d</color>
+                <color>#e7607b</color>
+                <color>#e5738a</color>
+                <color>#e38497</color>
+                <color>#e196a5</color>
+                <color>#dfa7b2</color>
+                <color>#ddb8bf</color>
+                <color>#dbc8cc</color>
+                <color>#d9d9d9</color>
+                <color>#c2d4c8</color>
+                <color>#abd0b8</color>
+                <color>#96cca9</color>
+                <color>#81c89a</color>
+                <color>#6dc48b</color>
+                <color>#5ac07d</color>
+                <color>#47bc70</color>
+                <color>#36b863</color>
+                <color>#25b456</color>
+                <color>#14b04a</color>
+                <color>#05ac3f</color>
+              </color-palette>
+            </encoding>
+          </style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:cohort:nk]' value='Cohort&#10;'>
+              <formatted-text>
+                <run>Cohort&#10;</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649982152704:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:cohort:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='1' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560840175626:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649992499204:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='1.9890055656433105' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649982152704:qk] + [federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560840175626:qk])</rows>
+        <cols>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[tmn:Report_Month:qk]</cols>
+      </table>
+      <simple-id uuid='{EF525280-0FC5-48A9-97B8-26A8E1EDA6E4}' />
+    </worksheet>
+    <worksheet name='Paid Churn Monthly Incremental'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontcolor='#555555' fontsize='11'>&lt;Sheet Name&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='CRM_KPI_Base_v3_Jan23 (SLi_sandbox)' name='federated.0d9et6i1aohu7m1dd089q0brzqu7' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0d9et6i1aohu7m1dd089q0brzqu7'>
+            <column caption='Account Type' datatype='string' name='[Account_Type]' role='dimension' type='nominal' />
+            <column caption='Paid Churn Incremental' datatype='real' name='[Calculation_1239052851957125120]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='([Calculation_1561904649991614466]-[Calculation_1561904649992134659]) * &#13;&#10;COUNTD(&#13;&#10;    IF ([cohort] = &apos;Email_Targeted&apos;) THEN [Paid_Churn_Denom]&#13;&#10;    ELSE NULL &#13;&#10;    END&#13;&#10;)' />
+            </column>
+            <column caption='Paid Churn Baseline' datatype='integer' name='[Calculation_1239052851962728456]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNTD(IF [cohort]=&apos;Email_Targeted&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+            </column>
+            <column caption='Paid Churn Targeted' datatype='real' name='[Calculation_1561904649991614466]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNTD(IF [cohort] = &apos;Email_Targeted&apos; THEN [Paid_Churn_Num] ELSE NULL END) /&#13;&#10;COUNTD(IF [cohort] = &apos;Email_Targeted&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+            </column>
+            <column caption='Paid Churn Holdout' datatype='real' name='[Calculation_1561904649992134659]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNTD(IF [cohort] = &apos;Holdout&apos; THEN [Paid_Churn_Num] ELSE NULL END) /&#13;&#10;COUNTD(IF [cohort] = &apos;Holdout&apos; THEN [Paid_Churn_Denom] ELSE NULL END)' />
+            </column>
+            <column caption='Paid Churn Lift Index' datatype='real' name='[Calculation_1561904649992499204]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[Calculation_1561904649991614466]/[Calculation_1561904649992134659] * 100' />
+            </column>
+            <column caption='Paid Churn Total' datatype='real' name='[Calculation_1737263560745586688]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[Calculation_1239052851962728456] + [Calculation_1239052851957125120]' />
+            </column>
+            <column caption='Paid Churn Incremental +' datatype='real' name='[Calculation_1737263560759312387]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF ([Calculation_1239052851957125120] &gt; 0) THEN [Calculation_1239052851957125120] &#13;&#10;ELSE NULL&#13;&#10;END' />
+            </column>
+            <column caption='Paid Churn Incremental -' datatype='real' name='[Calculation_1737263560759615492]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='If [Calculation_1239052851957125120] &lt; 0 THEN -[Calculation_1239052851957125120] &#13;&#10;ELSE NULL&#13;&#10;END' />
+            </column>
+            <column caption='Paid Churn Lift +/-' datatype='boolean' name='[Calculation_1737263560781012998]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='IF [Calculation_1561904649992499204] &gt;= 100 THEN TRUE&#13;&#10;ELSE FALSE&#13;&#10;END' />
+            </column>
+            <column caption='Paid Churn Incremental - (Label)' datatype='string' name='[Paid Churn Incremental - (copy)_1737263560789893129]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='If [Calculation_1239052851957125120] &lt; 0 THEN &apos;-&apos;&#13;&#10;ELSE NULL&#13;&#10;END' />
+            </column>
+            <column caption='Paid Churn Denom' datatype='string' name='[Paid_Churn_Denom]' role='dimension' type='nominal' />
+            <column caption='Paid Churn Num' datatype='string' name='[Paid_Churn_Num]' role='dimension' type='nominal' />
+            <column caption='Report Month' datatype='date' datatype-customized='true' name='[Report_Month]' role='dimension' type='ordinal' />
+            <column caption='Cohort' datatype='string' name='[cohort]' role='dimension' type='nominal'>
+              <aliases>
+                <alias key='&quot;Email_Targeted&quot;' value='Email Targeted' />
+              </aliases>
+            </column>
+            <column-instance column='[Report_Month]' derivation='MY' name='[my:Report_Month:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Account_Type]' derivation='None' name='[none:Account_Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Report_Month]' derivation='Month-Trunc' name='[tmn:Report_Month:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Calculation_1239052851957125120]' derivation='User' name='[usr:Calculation_1239052851957125120:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1239052851962728456]' derivation='User' name='[usr:Calculation_1239052851962728456:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1561904649992499204]' derivation='User' name='[usr:Calculation_1561904649992499204:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1737263560745586688]' derivation='User' name='[usr:Calculation_1737263560745586688:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1737263560759312387]' derivation='User' name='[usr:Calculation_1737263560759312387:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1737263560759615492]' derivation='User' name='[usr:Calculation_1737263560759615492:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1737263560781012998]' derivation='User' name='[usr:Calculation_1737263560781012998:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Paid Churn Incremental - (copy)_1737263560789893129]' derivation='User' name='[usr:Paid Churn Incremental - (copy)_1737263560789893129:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759615492:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759312387:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560745586688:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759615492:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759312387:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0d9et6i1aohu7m1dd089q0brzqu7].[sum:Calculation_4681069666459918348:qk]&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <slices>
+            <column>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]</column>
+            <column>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[my:Report_Month:ok]</column>
+            <column>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:Account_Type:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='width' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values]' value='79' />
+            <encoding attr='space' class='0' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values]' field-type='quantitative' fold='true' scope='rows' synchronized='true' type='space' />
+            <format attr='display' class='0' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values]' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' value='19' />
+            <format attr='text-format' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759312387:qk]' value='n#,##0;-#,##0' />
+            <format attr='text-format' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759615492:qk]' value='n#,##0' />
+            <format attr='color' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759615492:qk]' value='#e15759' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='display' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' value='false' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='show-null-value-warning' value='false' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-color' scope='cols' value='#ffffff' />
+            <format attr='stroke-size' scope='cols' value='5' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='col-width' field='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' value='140' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='10' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' />
+              <tooltip column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1239052851962728456:qk]' />
+              <tooltip column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560745586688:qk]' />
+              <tooltip column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1239052851957125120:qk]' />
+              <tooltip column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649992499204:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'>Month:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:Month:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Baseline:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[sum:Calculation_1239052851962691591:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Program Conversion:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[sum:total_p:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Incremental:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[sum:incremental:qk]>   ]]></run>
+                <run fontcolor='#000000' fontsize='9' italic='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[attr:Calculation_114208538653642752:nk]>]]></run>
+                <run fontsize='9' italic='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[sum:lift_percent:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='shape' value=':filled/diamond' />
+                <format attr='size' value='1.5162431001663208' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='11' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' />
+              <tooltip column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1239052851962728456:qk]' />
+              <tooltip column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560745586688:qk]' />
+              <tooltip column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1239052851957125120:qk]' />
+              <tooltip column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649992499204:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'>Month:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[tmn:Report_Month:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Baseline:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1239052851962728456:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Program Conversion:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560745586688:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Incremental:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1239052851957125120:qk]>   ]]></run>
+                <run fontsize='9' italic='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649992499204:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='shape' value=':filled/diamond' />
+                <format attr='size' value='1' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='12' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560745586688:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' />
+              <lod column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560781012998:nk]' />
+              <tooltip column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1239052851962728456:qk]' />
+              <tooltip column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560745586688:qk]' />
+              <tooltip column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1239052851957125120:qk]' />
+              <tooltip column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649992499204:qk]' />
+              <text column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759312387:qk]' />
+              <text column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759615492:qk]' />
+              <text column='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Paid Churn Incremental - (copy)_1737263560789893129:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'>Month:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:Month:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Baseline:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1239052851962728456:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Program Conversion:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560745586688:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#787878'>Incremental:&#9;</run>
+                <run bold='true'>Æ   </run>
+                <run fontsize='9' italic='true'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1561904649992499204:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+            <customized-label>
+              <formatted-text>
+                <run fontcolor='#428e23'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759312387:qk]>]]></run>
+                <run fontcolor='#e15759'><![CDATA[<[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Paid Churn Incremental - (copy)_1737263560789893129:nk]><[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560759615492:qk]>]]></run>
+                <run>Æ&#10;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='auto' />
+                <format attr='font-size' value='10' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='shape' value=':filled/diamond' />
+                <format attr='size' value='1' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560745586688:qk] + [federated.0d9et6i1aohu7m1dd089q0brzqu7].[Multiple Values])</rows>
+        <cols>[federated.0d9et6i1aohu7m1dd089q0brzqu7].[tmn:Report_Month:ok]</cols>
+      </table>
+      <simple-id uuid='{88648A5D-6723-4869-B1CF-7275FC194784}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Paid Churn'>
+      <style />
+      <size maxheight='350' maxwidth='1000' minheight='350' minwidth='1000' sizing-mode='fixed' />
+      <datasources>
+        <datasource caption='CRM_KPI_Base_v3_Jan23 (SLi_sandbox)' name='federated.0d9et6i1aohu7m1dd089q0brzqu7' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0d9et6i1aohu7m1dd089q0brzqu7'>
+        <column caption='Account Type' datatype='string' name='[Account_Type]' role='dimension' type='nominal' />
+        <column caption='Report Month' datatype='date' datatype-customized='true' name='[Report_Month]' role='dimension' type='ordinal' />
+        <column-instance column='[Report_Month]' derivation='MY' name='[my:Report_Month:ok]' pivot='key' type='ordinal' />
+        <column-instance column='[Account_Type]' derivation='None' name='[none:Account_Type:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='86000' id='7' param='horz' type-v2='layout-flow' w='98400' x='800' y='11714'>
+            <zone h='86000' id='5' type-v2='layout-basic' w='98400' x='800' y='11714'>
+              <zone h='86000' id='3' name='Paid Churn Monthly' w='32500' x='800' y='11714'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='86000' id='10' name='Paid Churn Monthly Incremental' w='33300' x='33300' y='11714'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='34286' id='13' name='Paid Churn FY' w='25200' x='66600' y='11714'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='51714' id='15' name='Paid Churn FY Incremental' w='32600' x='66600' y='46000'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='34286' id='17' name='Paid Churn Lift' show-title='false' w='7400' x='91800' y='11714'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone h='9428' id='9' name='Paid Churn Monthly' pane-specification-id='1' param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:cohort:nk]' type-v2='color' w='34500' x='64700' y='2286'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='9428' id='8' mode='checkdropdown' name='Paid Churn Monthly' param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:Account_Type:nk]' type-v2='filter' w='45000' x='19700' y='2286'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='9428' id='16' mode='checkdropdown' name='Paid Churn FY Incremental' param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[my:Report_Month:ok]' type-v2='filter' w='18900' x='800' y='2286'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='1200' minheight='1200' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='25' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='95428' id='24' param='vert' type-v2='layout-flow' w='98400' x='800' y='2286'>
+                <zone h='9428' id='8' mode='checkdropdown' name='Paid Churn Monthly' param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:Account_Type:nk]' type-v2='filter' w='45000' x='19700' y='2286'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='86000' id='3' is-fixed='true' name='Paid Churn Monthly' w='32500' x='800' y='11714'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='9428' id='9' name='Paid Churn Monthly' pane-specification-id='1' param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:cohort:nk]' type-v2='color' w='34500' x='64700' y='2286'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='86000' id='10' is-fixed='true' name='Paid Churn Monthly Incremental' w='33300' x='33300' y='11714'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='112' h='34286' id='13' is-fixed='true' name='Paid Churn FY' w='25200' x='66600' y='11714'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='112' h='34286' id='17' is-fixed='true' name='Paid Churn Lift' show-title='false' w='7400' x='91800' y='11714'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='9428' id='16' mode='checkdropdown' name='Paid Churn FY Incremental' param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[my:Report_Month:ok]' type-v2='filter' w='18900' x='800' y='2286'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='173' h='51714' id='15' is-fixed='true' name='Paid Churn FY Incremental' w='32600' x='66600' y='46000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{BB5E7189-F3D1-48C3-9794-A3D731F30B68}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='dashboard' maximized='true' name='Paid Churn'>
+      <viewpoints>
+        <viewpoint name='Paid Churn FY' />
+        <viewpoint name='Paid Churn FY Incremental' />
+        <viewpoint name='Paid Churn Lift'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Paid Churn Monthly'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Paid Churn Monthly Incremental'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='-1' />
+      <simple-id uuid='{A342B96A-74B0-47A7-94CB-043084F26429}' />
+    </window>
+    <window class='worksheet' name='Paid Churn Monthly'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='checkdropdown' param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:Account_Type:nk]' type='filter' />
+            <card pane-specification-id='1' param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:cohort:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{997E0B74-0A7C-40E2-998E-ADDDA26C428D}' />
+    </window>
+    <window class='worksheet' name='Paid Churn Monthly Incremental'>
+      <cards>
+        <edge name='left'>
+          <strip size='261'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:Account_Type:nk]' type='filter' />
+            <card pane-specification-id='12' param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{05D0D3A5-8F5E-4037-AE23-81B1D59986E7}' />
+    </window>
+    <window class='worksheet' name='Paid Churn FY'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[none:Account_Type:nk]' type='filter' />
+            <card pane-specification-id='6' param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{F5551221-AF3A-47D2-B9CD-3B82D7F4DDE4}' />
+    </window>
+    <window class='worksheet' name='Paid Churn FY Incremental'>
+      <cards>
+        <edge name='left'>
+          <strip size='261'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[my:Report_Month:ok]' type='filter' />
+            <card pane-specification-id='12' param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{8448D0E5-3CEC-47EB-9101-E1D0F1418CFA}' />
+    </window>
+    <window class='worksheet' name='Paid Churn Lift'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0d9et6i1aohu7m1dd089q0brzqu7].[usr:Calculation_1737263560781012998:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+      </viewpoint>
+      <simple-id uuid='{9F601BFE-430B-4D6E-900F-401768459B86}' />
+    </window>
+  </windows>
+</workbook>
