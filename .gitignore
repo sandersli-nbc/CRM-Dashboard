@@ -1,3 +1,6 @@
 *.xlsx
 *.twb
 *.pptx
+old_pipelines/
+QA/
+results dump/
