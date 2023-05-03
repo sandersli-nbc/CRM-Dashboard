@@ -1,5 +1,5 @@
 *.xlsx
-*.twb
+*.twbr
 *.pptx
 old_pipelines/
 QA/
