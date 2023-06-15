@@ -1,6 +1,13 @@
 *.xlsx
 *.twbr
 *.pptx
+*.png
+*.twbx
+*.twb
+
 old_pipelines/
+old dashboards/
 QA/
 results dump/
+next version/
+Email Channel Dashboard/
