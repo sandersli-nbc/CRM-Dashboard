@@ -1,3 +1,5 @@
+--DECLARE run_date DATE DEFAULT @report_start_date;
+
 CREATE or replace TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.GOLD_EMAIL_CHANNEL_PERFORMANCE` AS
 SELECT  Result_Type
 
@@ -15,6 +17,8 @@ SELECT  Result_Type
        ,Offer
        ,Churn_Frequency
        ,Previously_Bundled
+       ,Prev_30d_Viewer
+       ,Prev_Paying_Account_Flag
        ,Intender_Audience
        ,Genre
        ,Network
@@ -47,6 +51,7 @@ FROM (
               ,*
        FROM `nbcu-ds-sandbox-a-001.SLi_sandbox.SILVER_EMAIL_CHANNEL_PERFORMANCE_QUARTERLY`
 )
+--WHERE base.Report_Month >= run_date
 GROUP BY  Result_Type
          ,Report_Month
          ,Cohort
@@ -61,6 +66,8 @@ GROUP BY  Result_Type
          ,Offer
          ,Churn_Frequency
          ,Previously_Bundled
+         ,Prev_30d_Viewer
+         ,Prev_Paying_Account_Flag
          ,Intender_Audience
          ,Genre
          ,Network

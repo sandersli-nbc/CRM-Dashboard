@@ -5,71 +5,37 @@ DECLARE report_end_date DATE DEFAULT @report_end_date;
 -- Establish Audience 
 --===================================================================================================================================================
 
-CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Unsubs_{report}` AS (
-    
-    SELECT DISTINCT adobe_tracking_id
-    FROM  `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Unsubs`
-    WHERE first_unsub_date <= report_end_date
+CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Delivered_{report}` AS (
 
-);
-
-CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Delivered_{report}` AS ( -- everyone who have received emails in the month
-
+    -- everyone who have received emails in the month
     SELECT  DISTINCT adobe_tracking_id
-    FROM
-    (
-        SELECT  DISTINCT adobe_tracking_id
-        FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_MPARTICLE_BRAZE`
-        WHERE event_name = 'Email Deliveries'
-        AND event_date BETWEEN report_start_date AND report_end_date
-        AND LOWER(campaign_name) NOT LIKE 'transactional%' -- Exclude transactional emails 
-    ) b
-    -- exclude users put in holdout group
-    LEFT JOIN
-    (
-        SELECT  DISTINCT TrackingId AS aid
-        FROM `nbcu-ds-prod-001.PeacockDataMartMarketingGold.HOLDOUT_GROUP`
-        WHERE cohort = format_timestamp('%B%Y', DATETIME_TRUNC(report_start_date, QUARTER))
-        AND Hold_Out_Type_Current = 'Owned Email Holdout'
-        AND DATE(TIMESTAMP(RegistrationDate), 'America/New_York') <= report_end_date 
-    ) g
-    ON g.aid = b.adobe_tracking_id
-    WHERE g.aid IS NULL
+    FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_MPARTICLE_BRAZE`
+    WHERE event_name = 'Email Deliveries'
+    AND event_date BETWEEN report_start_date AND report_end_date
+    AND ((LOWER(campaign_name) NOT LIKE '%transactional%') AND (LOWER(campaign_name) NOT LIKE '%transcomm%')) -- Exclude transactional emails 
 
 );
 
 CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Holdout_{report}` AS ( 
     
-    SELECT  DISTINCT holdout.adobe_tracking_id
-    FROM
-    (
-        SELECT  DISTINCT TrackingId AS adobe_tracking_id
-        FROM `nbcu-ds-prod-001.PeacockDataMartMarketingGold.HOLDOUT_GROUP`
-        WHERE cohort = format_timestamp('%B%Y', DATETIME_TRUNC(report_start_date, QUARTER)) -- get cohort name as month of quarter start + year
-        AND Hold_Out_Type_Current = 'Owned Email Holdout'
-        AND DATE(TIMESTAMP(RegistrationDate), 'America/New_York') <= report_end_date
-    ) holdout
-    -- Exclude those who are assigned to Email Holdout but actually received emails in holdout period
-    LEFT JOIN (
-        SELECT DISTINCT adobe_tracking_id 
-        FROM  `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_MPARTICLE_BRAZE`
-        WHERE event_name = 'Email Deliveries' 
-        AND event_date BETWEEN DATETIME_TRUNC(report_start_date, QUARTER) AND report_end_date
-        AND LOWER(campaign_name) NOT LIKE 'transactional%' -- Exclude transactional emails
-    ) received
-    ON holdout.adobe_tracking_id = received.adobe_tracking_id
-    WHERE received.adobe_tracking_id IS NULL
+    SELECT  DISTINCT TrackingId AS adobe_tracking_id
+    FROM `nbcu-ds-prod-001.PeacockDataMartMarketingGold.HOLDOUT_GROUP`
+    WHERE cohort = format_timestamp('%B%Y', DATETIME_TRUNC(report_start_date, QUARTER)) -- get cohort name as month of quarter start + year
+    AND Hold_Out_Type_Current = 'Owned Email Holdout'
+    AND DATE(TIMESTAMP(RegistrationDate), 'America/New_York') <= report_end_date
 
 );
 
 CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Channel_Qualifier_{report}` AS (
 
     -- Engagement: Deliveries 4 months before start of the holdout period, defined as start of quarter
+    -- Qualifier exists to enforce equivalent engaged audience among cohorts, using previous sends as a proxy
+    -- Primarily for holdout channel, as targetable group would automatically qualify
     SELECT DISTINCT adobe_tracking_id 
     FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_MPARTICLE_BRAZE`
     WHERE event_name = 'Email Deliveries'
     AND event_date BETWEEN DATE_SUB(DATETIME_TRUNC(report_start_date, QUARTER), INTERVAL 4 MONTH) AND report_end_date
-    AND LOWER(campaign_name) NOT LIKE 'transactional%' -- Exclude transactional emails
+    AND ((LOWER(campaign_name) NOT LIKE '%transactional%') AND (LOWER(campaign_name) NOT LIKE '%transcomm%')) -- Exclude transactional emails
 
     UNION ALL
 
@@ -95,18 +61,30 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Measurement_Aud
         ,user.offer
         ,user.paid_tenure
         ,user.paying_account_flag
+        ,user_start.prev_30d_viewer
+        ,user_start.prev_paying_account_flag
         ,ia.First_Viewed_Title                                                                          AS intender_audience
         ,ia.genre
         ,ia.network
         ,CASE WHEN pb.adobe_tracking_id IS NOT NULL THEN 'Previously Bundled'  ELSE 'Never Bundled' END AS previously_bundled
     FROM (
-        SELECT  *
+
+        SELECT  t.adobe_tracking_id
             ,'Targeted' AS cohort
-        FROM `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Delivered_{report}`
+        FROM `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Delivered_{report}` t
+        LEFT JOIN `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Holdout_{report}` h
+        ON t.adobe_tracking_id = h.adobe_tracking_id
+        WHERE h.adobe_tracking_id IS NULL
+
         UNION ALL
-        SELECT  *
+
+        SELECT  h.adobe_tracking_id
             ,'Holdout' AS cohort
-        FROM `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Holdout_{report}`
+        FROM `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Holdout_{report}` h
+        LEFT JOIN `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Delivered_{report}` t
+        ON h.adobe_tracking_id = t.adobe_tracking_id
+        WHERE t.adobe_tracking_id IS NULL
+
     ) delivered_and_holdout
 
     -- Include only those who received email in the current reporting period or are in holdout
@@ -147,68 +125,55 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Measurement_Aud
         ) user
     ON delivered_and_holdout.adobe_tracking_id = user.adobe_tracking_id
 
+    --add attribute: video_watched_trailing30 before the start of the reporting period
+    LEFT JOIN
+    (
+        SELECT  DISTINCT adobe_tracking_id
+            ,video_watched_trailing30 AS prev_30d_viewer
+            ,paying_account_flag      AS prev_paying_account_flag
+        FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER`
+        WHERE report_date = DATE_SUB(report_start_date, INTERVAL 1 DAY) 
+    ) user_start
+    ON delivered_and_holdout.adobe_tracking_id = user_start.adobe_tracking_id
+
     -- include intended audience
     LEFT JOIN  `nbcu-ds-int-nft-001.PeacockDataMartMarketingGold.NMA_INTENDER_AUDIENCE_ATTRIBUTES_FINAL` ia
     ON delivered_and_holdout.adobe_tracking_id = ia.adobe_tracking_id
 
     -- include previously_bundled
-    LEFT JOIN (
-        SELECT DISTINCT adobe_tracking_id
-        FROM `nbcu-ds-sandbox-a-001.SLi_sandbox.previously_bundled`
-        WHERE report_date = report_end_date
-    ) pb
+    LEFT JOIN
+        (
+            SELECT  DISTINCT adobe_tracking_id
+            FROM `nbcu-ds-sandbox-a-001.SLi_sandbox.previously_bundled`
+            WHERE report_date = report_end_date 
+        ) pb
     ON delivered_and_holdout.adobe_tracking_id = pb.adobe_tracking_id
 
-    -- exclude unsubscribed
-    LEFT JOIN `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Unsubs_{report}` email_unsubs
-    ON delivered_and_holdout.adobe_tracking_id = email_unsubs.adobe_tracking_id
-    
-    WHERE email_unsubs.adobe_tracking_id IS NULL
+    LEFT JOIN
+        (
+            SELECT  DISTINCT adobe_tracking_id
+            FROM `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Unsubs`
+            WHERE first_unsub_date <= report_end_date 
+        ) unsubs
+    ON delivered_and_holdout.adobe_tracking_id = unsubs.adobe_tracking_id
+
+    WHERE unsubs.adobe_tracking_id IS NULL
 
 );
 
 --===================================================================================================================================================
--- Measure Metrics 
+-- Output Metrics 
 --===================================================================================================================================================
-
-CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Video_Viewing_{report}` AS (
-    
-    SELECT adobe_tracking_id
-        ,COUNT (DISTINCT CASE WHEN VIDEO.num_views_started = 1 THEN video.adobe_tracking_id ELSE NULL END) AS Distinct_Content_Starts -- num_views_started is a flag
-        ,SUM (VIDEO.num_views_started )                                                                    AS Total_Content_Starts
-        ,SUM(VIDEO.num_seconds_played_no_ads)/3600                                                         AS Viewing_Time
-        ,COUNT(DISTINCT CASE WHEN VIDEO.num_views_started = 1 THEN session_id ELSE NULL END)               AS Distinct_Viewing_Sessions 
-        ,COUNT(DISTINCT(CASE 
-                            WHEN (num_seconds_played_no_ads > CASE 
-                                                                WHEN LOWER(consumption_type) = 'virtual channel' THEN 299 
-                                                                ELSE 0 
-                                                              END
-                                 ) AND (num_views_started > 0) 
-                            THEN CASE 
-                                    WHEN (LOWER(consumption_type) = "shortform") THEN "Shortform"
-                                    WHEN LOWER(franchise) != 'other' THEN franchise 
-                                    ELSE display_name
-                                 END
-                        END)
-         )                                                                                                 AS Repertoire_Pavo_Method
-    FROM `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Measurement_Audience_{report}` a
-    
-    INNER JOIN  `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_VIDEO` VIDEO
-        ON VIDEO.adobe_tracking_id = a.aid
-        AND adobe_date BETWEEN report_start_date AND report_end_date
-    GROUP BY 1
-    
-);
 
 CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Channel_Base_{report}` AS (
 
     WITH 
-    Lapsed_Save_Base AS ( --'Lapsed_Users'
+    Lapsed_Save_Base AS (
         SELECT  DISTINCT adobe_tracking_id
             ,date_of_last_view
         FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_PRIMARY_DEVICES`
         WHERE (report_date BETWEEN report_start_date AND report_end_date)
-        AND (days_since_last_view BETWEEN 30 AND 90) -- this guarantees we are only getting people who have at least past the 'lapsing' phase in the time period. 
+        AND (days_since_last_view BETWEEN 30 AND 90)
     )
     , Lapsed_Save_Denom AS (
         SELECT  DISTINCT adobe_tracking_id
@@ -217,18 +182,27 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Channel_Base_{r
     , Lapsed_Save_Num AS (
         SELECT  DISTINCT a.adobe_tracking_id
         FROM Lapsed_Save_Base a
-        INNER JOIN `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_VIDEO` VIDEO
-            ON a.adobe_tracking_id = VIDEO.adobe_tracking_id 
-            AND (VIDEO.adobe_date BETWEEN report_start_date AND report_end_date) 
-            AND (VIDEO.adobe_date BETWEEN DATE_ADD(date_of_last_view, INTERVAL 30 day) AND DATE_ADD(date_of_last_view, INTERVAL 90 DAY)) 
-            AND (VIDEO.num_views_started > 0)
+        INNER JOIN `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_VIDEO` video
+        ON video.adobe_tracking_id = a.adobe_tracking_id
+        AND (adobe_date BETWEEN DATE_ADD(date_of_last_view, INTERVAL 30 day) AND DATE_ADD(date_of_last_view, INTERVAL 90 day))
+        AND (adobe_date BETWEEN report_start_date AND report_end_date)
+        AND (num_views_started = 1)
+        AND NOT(
+            (COALESCE(stream_type,"NULL") = 'trailer') 
+            AND (
+                COALESCE(LOWER(vdo_initiate),"NULL") LIKE ('%auto%play%')
+                --From 2023-03-01 onwards vdo_initiate=n/a will be considered as Auto play
+                OR 
+                (adobe_date >= '2023-03-01' AND COALESCE(LOWER(vdo_initiate),"NULL") = 'n/a')
+            )
+        )
     )
-    , Lapsing_Save_Base AS ( --'Lapsing_Users'
+    , Lapsing_Save_Base AS (
         SELECT  DISTINCT adobe_tracking_id
             ,date_of_last_view
         FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_PRIMARY_DEVICES`
         WHERE (report_date BETWEEN report_start_date AND report_end_date)
-        AND (days_since_last_view BETWEEN 15 AND 29) -- this guarantees we are only getting people who are in the 'lapsing' phase in the time period. 
+        AND (days_since_last_view BETWEEN 15 AND 29)
     )
     , Lapsing_Save_Denom AS (
         SELECT  DISTINCT adobe_tracking_id
@@ -237,11 +211,20 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Channel_Base_{r
     , Lapsing_Save_Num AS (
         SELECT  DISTINCT a.adobe_tracking_id
         FROM Lapsing_Save_Base a
-        INNER JOIN `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_VIDEO` VIDEO
-            ON a.adobe_tracking_id = VIDEO.adobe_tracking_id
-            AND (adobe_date BETWEEN report_start_date AND report_end_date)
-            AND (VIDEO.adobe_date BETWEEN DATE_ADD(date_of_last_view, INTERVAL 15 day) AND DATE_ADD(date_of_last_view, INTERVAL 29 day))
-            AND (VIDEO.num_views_started > 0)
+        INNER JOIN  `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_VIDEO` video
+        ON video.adobe_tracking_id = a.adobe_tracking_id
+        AND (adobe_date BETWEEN DATE_ADD(date_of_last_view, INTERVAL 15 day) AND DATE_ADD(date_of_last_view, INTERVAL 29 day))
+        AND (adobe_date BETWEEN report_start_date AND report_end_date)
+        AND (num_views_started = 1)
+        AND NOT(
+            (COALESCE(stream_type,"NULL") = 'trailer') 
+            AND (
+                COALESCE(LOWER(vdo_initiate),"NULL") LIKE ('%auto%play%')
+                --From 2023-03-01 onwards vdo_initiate=n/a will be considered as Auto play
+                OR 
+                (adobe_date >= '2023-03-01' AND COALESCE(LOWER(vdo_initiate),"NULL") = 'n/a')
+            )
+        )
     )
     , Free_To_Paid_Denom AS (
         SELECT  DISTINCT adobe_tracking_id
@@ -257,7 +240,6 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Channel_Base_{r
                 ,adobe_tracking_id
             FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER` USER
             WHERE (entitlement_change_flag IN ('Upgrade: Free to Premium' , 'Upgrade: Free to Premium+'))
-            -- , 'Upgrade: Premium to Premium+'
             AND (paying_account_flag = 'Paying')
             AND (USER.report_date BETWEEN report_start_date AND report_end_date)
         )
@@ -298,10 +280,20 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Channel_Base_{r
     )
     , Paid_Winbacks_Denom AS (
         SELECT  DISTINCT adobe_tracking_id
-        FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER`
-        WHERE (paying_account_flag = 'NonPaying')
-        AND (first_paying_date IS NOT NULL)
-        AND (report_date BETWEEN report_start_date AND report_end_date)
+        FROM
+        (
+            SELECT  adobe_tracking_id
+                ,report_date
+            FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER`
+            WHERE paying_account_flag = 'NonPaying'
+            AND report_date BETWEEN report_start_date AND report_end_date 
+        )
+        WHERE adobe_tracking_id NOT IN ( 
+            SELECT DISTINCT adobe_tracking_id 
+            FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER` 
+            WHERE (first_paying_date IS NULL)
+            AND (report_date BETWEEN report_start_date AND report_end_date)
+        ) 
     )
     , Paid_Winbacks_Num AS (
         SELECT  DISTINCT adobe_tracking_id
@@ -338,6 +330,8 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Channel_Base_{r
         ,a.offer
         ,a.paid_tenure
         ,a.paying_account_flag
+        ,a.prev_30d_viewer
+        ,a.prev_paying_account_flag
         ,a.intender_audience
         ,a.genre
         ,a.network
@@ -363,7 +357,7 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Channel_Base_{r
         ,CASE WHEN EOM_Paid_Churn_Denom.adobe_tracking_id IS NOT NULL THEN 1  ELSE 0 END  AS EOM_Paid_Churn_Denom
         ,CASE WHEN EOM_Paid_Churn_Num.adobe_tracking_id IS NOT NULL THEN 1  ELSE 0 END    AS EOM_Paid_Churn_Num
     FROM `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Measurement_Audience_{report}` a
-    LEFT JOIN `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Video_Viewing_{report}` video
+    LEFT JOIN `nbcu-ds-sandbox-a-001.SLi_sandbox.Video_Viewing_{report}` video
     ON a.aid = video.adobe_tracking_id
     LEFT JOIN Lapsed_Save_Denom
     ON a.aid = Lapsed_Save_Denom.adobe_tracking_id
