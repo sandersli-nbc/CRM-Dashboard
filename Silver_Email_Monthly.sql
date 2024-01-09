@@ -19,7 +19,7 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Delivered_{repo
 CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Holdout_{report}` AS ( 
     
     SELECT  DISTINCT TrackingId AS adobe_tracking_id
-    FROM `nbcu-ds-prod-001.PeacockDataMartMarketingGold.HOLDOUT_GROUP`
+    FROM `nbcu-ds-int-nft-001.PeacockDataMartMarketingGold.HOLDOUT_GROUP`
     WHERE cohort = format_timestamp('%B%Y', DATETIME_TRUNC(report_start_date, QUARTER)) -- get cohort name as month of quarter start + year
     AND Hold_Out_Type_Current = 'Owned Email Holdout'
     AND DATE(TIMESTAMP(RegistrationDate), 'America/New_York') <= report_end_date
@@ -58,6 +58,7 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Measurement_Aud
         ,user.billing_platform
         ,user.bundling_partner
         ,user.churn_frequency
+        ,user.entitlement
         ,user.offer
         ,user.paid_tenure
         ,user.paying_account_flag
@@ -67,6 +68,9 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Measurement_Aud
         ,ia.genre
         ,ia.network
         ,CASE WHEN pb.adobe_tracking_id IS NOT NULL THEN 'Previously Bundled'  ELSE 'Never Bundled' END AS previously_bundled
+        --,CASE WHEN email_openers_start.adobe_tracking_id IS NOT NULL THEN 1 ELSE 0 END as prev_60d_email_opener_flag
+        --,user_open as prev_60d_user_open_flag
+        --,MPP_user as prev_60d_MPP_user_flag
     FROM (
 
         SELECT  t.adobe_tracking_id
@@ -120,6 +124,7 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Measurement_Aud
                 ,CASE WHEN voucher_partner IS NULL THEN 'Not On Offer'  ELSE 'On Offer' END            AS offer
                 ,CASE WHEN paying_account_flag = 'Paying' THEN tenure_paid_lens  ELSE 'Non-Paying' END AS paid_tenure
                 ,paying_account_flag
+                ,entitlement
             FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER`
             WHERE report_date = report_end_date 
         ) user
@@ -145,10 +150,27 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Measurement_Aud
         (
             SELECT  DISTINCT adobe_tracking_id
             FROM `nbcu-ds-sandbox-a-001.SLi_sandbox.previously_bundled`
-            WHERE report_date = report_end_date 
+            WHERE first_bundled_date <= report_end_date 
         ) pb
     ON delivered_and_holdout.adobe_tracking_id = pb.adobe_tracking_id
 
+    /*
+    -- include email openers
+    LEFT JOIN 
+    (
+        SELECT  adobe_tracking_id
+            ,MAX(CASE WHEN machineOpen IS NULL THEN 1 ELSE 0 END)         AS user_open
+            ,MAX(CASE WHEN machineOpen IS NOT NULL THEN 1 ELSE 0 END) AS MPP_user
+        FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_MPARTICLE_BRAZE`
+        WHERE event_name = 'Email Opens'
+        AND event_date BETWEEN DATE_SUB(DATETIME_TRUNC(report_start_date, QUARTER), INTERVAL 60 DAY) AND DATE_SUB(DATETIME_TRUNC(report_start_date, QUARTER), INTERVAL 1 DAY)
+        AND ((LOWER(campaign_name) NOT LIKE '%transactional%') AND (LOWER(campaign_name) NOT LIKE '%transcomm%')) -- Exclude transactional emails
+        GROUP BY 1
+    ) email_openers_start
+    ON delivered_and_holdout.adobe_tracking_id = email_openers_start.adobe_tracking_id
+    */
+    
+    -- remove email unsubs
     LEFT JOIN
         (
             SELECT  DISTINCT adobe_tracking_id
@@ -228,21 +250,56 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Channel_Base_{r
     )
     , Free_To_Paid_Denom AS (
         SELECT  DISTINCT adobe_tracking_id
-        FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER` USER
+        FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER`
         WHERE (paying_account_flag = 'NonPaying')
-        AND (USER.report_date BETWEEN report_start_date AND report_end_date )
+        AND (report_date BETWEEN report_start_date AND report_end_date )
     )
     , Free_To_Paid_Num AS (
         SELECT  DISTINCT adobe_tracking_id
+        FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER`
+        WHERE (paying_account_flag = 'Paying')
+        AND (paying_account_change_flag = 'NonPaying to Paying') 
+        AND (report_date BETWEEN report_start_date AND report_end_date)
+    )
+    , Net_New_Upgrade_Denom AS (
+        SELECT  DISTINCT adobe_tracking_id
+        FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER` 
+        WHERE (paying_account_flag = 'NonPaying')
+        AND (first_paying_date IS NULL)
+        AND (report_date BETWEEN report_start_date AND report_end_date) 
+    )
+    , Net_New_Upgrade_Num AS (
+        SELECT  DISTINCT adobe_tracking_id
+        FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER`
+        WHERE (paying_account_flag = 'Paying')
+        AND (paying_account_change_flag = 'NonPaying to Paying')
+        AND (first_paying_date = last_paid_date)
+        AND (report_date BETWEEN report_start_date AND report_end_date) 
+    )
+    , Paid_Winbacks_Denom AS (
+        SELECT  DISTINCT adobe_tracking_id
         FROM
         (
-            SELECT  report_date
-                ,adobe_tracking_id
-            FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER` USER
-            WHERE (entitlement_change_flag IN ('Upgrade: Free to Premium' , 'Upgrade: Free to Premium+'))
-            AND (paying_account_flag = 'Paying')
-            AND (USER.report_date BETWEEN report_start_date AND report_end_date)
+            SELECT  adobe_tracking_id
+                ,report_date
+            FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER`
+            WHERE paying_account_flag = 'NonPaying'
+            AND report_date BETWEEN report_start_date AND report_end_date 
         )
+        WHERE adobe_tracking_id NOT IN ( 
+            SELECT DISTINCT adobe_tracking_id 
+            FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER` 
+            WHERE (first_paying_date IS NULL)
+            AND (report_date BETWEEN report_start_date AND report_end_date)
+        ) 
+    )
+    , Paid_Winbacks_Num AS (
+        SELECT  DISTINCT adobe_tracking_id
+        FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER`
+        WHERE (paying_account_flag = 'Paying')
+        AND (paying_account_change_flag = 'NonPaying to Paying')
+        AND (first_paying_date != last_paid_date)
+        AND (report_date BETWEEN report_start_date AND report_end_date) 
     )
     , Cancel_Save_Denom AS (
         SELECT  DISTINCT adobe_tracking_id
@@ -265,41 +322,6 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Channel_Base_{r
         )
         WHERE (auto_renew_flag_today = 'OFF')
         AND (auto_renew_flag_next_day = 'ON')
-    )
-    , Net_New_Upgrade_Denom AS (
-        SELECT  DISTINCT adobe_tracking_id
-        FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER` 
-        WHERE (first_paying_date IS NULL)
-        AND (report_date BETWEEN report_start_date AND report_end_date) 
-    )
-    , Net_New_Upgrade_Num AS (
-        SELECT  DISTINCT adobe_tracking_id
-        FROM `nbcu-ds-sandbox-a-001.SLi_sandbox.upgrade_date_rank`
-        WHERE (upgrade_row_number = 1)
-        AND (report_date BETWEEN report_start_date AND report_end_date)
-    )
-    , Paid_Winbacks_Denom AS (
-        SELECT  DISTINCT adobe_tracking_id
-        FROM
-        (
-            SELECT  adobe_tracking_id
-                ,report_date
-            FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER`
-            WHERE paying_account_flag = 'NonPaying'
-            AND report_date BETWEEN report_start_date AND report_end_date 
-        )
-        WHERE adobe_tracking_id NOT IN ( 
-            SELECT DISTINCT adobe_tracking_id 
-            FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER` 
-            WHERE (first_paying_date IS NULL)
-            AND (report_date BETWEEN report_start_date AND report_end_date)
-        ) 
-    )
-    , Paid_Winbacks_Num AS (
-        SELECT  DISTINCT adobe_tracking_id
-        FROM `nbcu-ds-sandbox-a-001.SLi_sandbox.upgrade_date_rank`
-        WHERE (upgrade_row_number > 1)
-        AND (report_date BETWEEN report_start_date AND report_end_date) 
     )
     , EOM_Paid_Churn_Denom AS  (
         SELECT  DISTINCT adobe_tracking_id
@@ -327,6 +349,7 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Channel_Base_{r
         ,a.billing_platform
         ,a.bundling_partner
         ,a.churn_frequency
+        ,a.entitlement
         ,a.offer
         ,a.paid_tenure
         ,a.paying_account_flag
@@ -336,12 +359,16 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Email_Channel_Base_{r
         ,a.genre
         ,a.network
         ,a.previously_bundled
+        --,prev_60d_email_opener_flag
+        --,prev_60d_user_open_flag
+        --,prev_60d_MPP_user_flag
 
         -- Metrics
         ,CASE WHEN video.adobe_tracking_id IS NOT NULL THEN 1  ELSE 0 END                 AS Viewer
         ,video.Viewing_Time
         ,video.Repertoire_Pavo_Method
         ,video.Distinct_Viewing_Sessions
+        ,video.Active_Days
         ,CASE WHEN Lapsed_Save_Denom.adobe_tracking_id IS NOT NULL THEN 1  ELSE 0 END     AS Lapsed_Save_Denom
         ,CASE WHEN Lapsed_Save_Num.adobe_tracking_id IS NOT NULL THEN 1  ELSE 0 END       AS Lapsed_Save_Num
         ,CASE WHEN Lapsing_Save_Denom.adobe_tracking_id IS NOT NULL THEN 1  ELSE 0 END    AS Lapsing_Save_Denom

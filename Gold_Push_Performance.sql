@@ -1,6 +1,6 @@
 --DECLARE run_date DATE DEFAULT @report_start_date;
 
-CREATE or replace TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.GOLD_PUSH_CHANNEL_PERFORMANCE` AS
+CREATE or replace TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.GOLD_PUSH_CHANNEL_PERFORMANCE_TEST` AS
 SELECT  Result_Type
 
        ,Report_Month
@@ -22,12 +22,14 @@ SELECT  Result_Type
        ,Intender_Audience
        ,Genre
        ,Network
+       ,entitlement
 
        ,COUNT(DISTINCT aid)            AS Users
        ,SUM(Viewer)                    AS Viewers
        ,SUM(Viewing_Time)              AS Viewing_Time
        ,SUM(Repertoire_Pavo_Method)    AS Repertoire
        ,SUM(Distinct_Viewing_Sessions) AS Viewing_Sessions
+       ,SUM(active_days)               AS Active_Days
        ,SUM(Lapsed_Save_Denom)         AS Lapsed_Save_Denom
        ,SUM(Lapsed_Save_Num)           AS Lapsed_Save_Num
        ,SUM(Lapsing_Save_Denom)        AS Lapsing_Save_Denom
@@ -70,4 +72,5 @@ GROUP BY  Result_Type
          ,Prev_Paying_Account_Flag
          ,Intender_Audience
          ,Genre
-         ,Network      
+         ,Network    
+         ,entitlement  

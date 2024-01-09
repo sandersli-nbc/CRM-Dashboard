@@ -116,10 +116,11 @@ class SimpleQueryJob:
         -------
         None
         """
-        with bigquery.Client() as client:
-            status = client.cancel_job(self.job_id)
-            print(f"{self.name}: {status.job_id} cancelled")
-        self.active = False
+        if self.active:
+            with bigquery.Client() as client:
+                status = client.cancel_job(self.job_id)
+                print(f"{self.name}: {status.job_id} cancelled")
+            self.active = False
             
     def update(self):
         """
@@ -229,6 +230,8 @@ class QueryTool:
             else:
                 config = None
             self.jobs[name] = SimpleQueryJob(name, query, config)
+            if name in self.finished_jobs:
+                del self.finished_jobs[name]
             print('Added:', self.jobs[name])
                            
     def start(self):
