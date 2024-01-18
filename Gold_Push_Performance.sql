@@ -8,21 +8,24 @@ SELECT  Result_Type
 
        ,Account_Type
        ,Active_Viewer
-       ,Primary_Device
+       
        ,Account_Tenure
-       ,Paid_Tenure
+       ,Billing_Cycle_Category
        ,Billing_Platform
        ,Bundling_Partner
-       ,Billing_Cycle_Category
-       ,Offer
        ,Churn_Frequency
+       ,Entitlement
+       ,Last_Paid_Tenure
+       ,Offer_Type
+       ,Paying_Account_Flag
        ,Previously_Bundled
-       ,Prev_30d_Viewer
-       ,Prev_Paying_Account_Flag
+       ,Primary_Device
        ,Intender_Audience
        ,Genre
        ,Network
-       ,entitlement
+
+       ,Prev_30d_Viewer
+       ,Prev_Paying_Account_Flag
 
        ,COUNT(DISTINCT aid)            AS Users
        ,SUM(Viewer)                    AS Viewers
@@ -59,18 +62,19 @@ GROUP BY  Result_Type
          ,Cohort
          ,Account_Type
          ,Active_Viewer
-         ,Primary_Device
          ,Account_Tenure
-         ,Paid_Tenure
+         ,Billing_Cycle_Category
          ,Billing_Platform
          ,Bundling_Partner
-         ,Billing_Cycle_Category
-         ,Offer
          ,Churn_Frequency
+         ,Entitlement
+         ,Last_Paid_Tenure
+         ,Offer_Type
+         ,Paying_Account_Flag
          ,Previously_Bundled
-         ,Prev_30d_Viewer
-         ,Prev_Paying_Account_Flag
+         ,Primary_Device
          ,Intender_Audience
          ,Genre
-         ,Network    
-         ,entitlement  
+         ,Network
+         ,Prev_30d_Viewer
+         ,Prev_Paying_Account_Flag

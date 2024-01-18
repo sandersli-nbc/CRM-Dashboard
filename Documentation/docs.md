@@ -68,6 +68,29 @@ LEFT JOIN {viewing} v
 ON a.adobe_tracking_id = v.adobe_tracking_id
 ```
 
+### Active Days
+- Average number of distinct viewing days of all users in the cohort in the reporting period
+- Num: Distinct number of active days for each user over the month
+- Denom: Audience Size
+- Dependencies: `Video_Viewing`
+
+```
+WITH cte AS (
+  SELECT
+    DATE_TRUNC(v.adobe_date, MONTH) AS report_month,
+    adobe_tracking_id,
+    COUNT(DISTINCT v.adobe_date) AS active_days
+  FROM {audience} a
+  LEFT JOIN {viewing} v
+  ON a.adobe_tracking_id = v.adobe_tracking_id
+    AND v.adobe_date BETWEEN report_start_date
+    AND report_end_date
+  GROUP BY 1,2 
+  )
+SELECT SUM(active_days) / COUNT(DISTINCT a.adobe_tracking_id)
+FROM cte
+```
+
 ### Lapsed Save Rate
 - Percentage of the audience who were past lapsing (last watch date between 30 and 90 days) sometime during the reporting period that had watched something in the reporting period
 - Num: Users who watched something in the current month who were past lapsing (last watch date is between 30 and 90 days)

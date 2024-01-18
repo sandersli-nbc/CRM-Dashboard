@@ -56,8 +56,8 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Push_Measurement_Audi
         ,user.bundling_partner
         ,user.churn_frequency
         ,user.entitlement
-        ,user.offer
-        ,user.paid_tenure
+        ,user.last_paid_tenure
+        ,user.offer_type
         ,user.paying_account_flag
         ,user_start.prev_30d_viewer
         ,user_start.prev_paying_account_flag
@@ -109,16 +109,26 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Push_Measurement_Audi
                 ,account_type
                 ,video_watched_trailing30                                                              AS active_viewer
                 ,CASE WHEN billing_cycle = 'ANNUAL' THEN 'Annual'
-                        WHEN billing_cycle = 'MONTHLY' THEN 'Monthly' END                              AS billing_cycle_category
+                      WHEN billing_cycle = 'MONTHLY' THEN 'Monthly' 
+                 END                                                                                   AS billing_cycle_category
                 ,CASE WHEN paying_account_flag = 'Paying' THEN billing_platform  ELSE 'Non-Paying' END AS billing_platform
                 ,bundling_partner
                 ,CASE WHEN previous_paid_churn_count = 0 THEN '0'
-                        WHEN previous_paid_churn_count = 1 THEN '1'
-                        WHEN previous_paid_churn_count = 2 THEN '2'  ELSE '3+' END                     AS churn_frequency
-                ,CASE WHEN voucher_partner IS NULL THEN 'Not On Offer'  ELSE 'On Offer' END            AS offer
-                ,CASE WHEN paying_account_flag = 'Paying' THEN tenure_paid_lens  ELSE 'Non-Paying' END AS paid_tenure
+                      WHEN previous_paid_churn_count = 1 THEN '1'
+                      WHEN previous_paid_churn_count = 2 THEN '2'  
+                      ELSE '3+' 
+                 END                                                                                   AS churn_frequency
+                 ,entitlement
+                ,CASE WHEN LOWER(Bundling_partner) LIKE '%wholesale%' THEN 'Wholesale'
+                    WHEN Bundling_partner = "INSTACART-US" THEN 'Wholesale'
+                    WHEN Bundling_partner = 'N/A' THEN 'Full Price'
+                    ELSE 'Limited Time Offer' 
+                 END                                                                                   AS offer_type
+                ,CASE WHEN last_paid_date IS NULL THEN 'N/A'
+                      WHEN DATE_DIFF(report_date, last_paid_date, DAY) <= 90 THEN '0-90 days'
+                      ELSE '91+ days'
+                 END                                                                                   AS last_paid_tenure
                 ,paying_account_flag
-                ,entitlement
             FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_USER`
             WHERE report_date = report_end_date 
         ) user
@@ -317,8 +327,8 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Push_Channel_Base_{re
         ,a.bundling_partner
         ,a.churn_frequency
         ,a.entitlement
-        ,a.offer
-        ,a.paid_tenure
+        ,a.offer_type
+        ,a.last_paid_tenure
         ,a.paying_account_flag
         ,a.prev_30d_viewer
         ,a.prev_paying_account_flag

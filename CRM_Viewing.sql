@@ -32,17 +32,27 @@ CREATE OR REPLACE TABLE `nbcu-ds-sandbox-a-001.SLi_sandbox.Video_Viewing_{report
         ,COUNT(DISTINCT adobe_date)                                                             AS active_days
     FROM `nbcu-ds-prod-001.PeacockDataMartSilver.SILVER_VIDEO`
     WHERE (adobe_date BETWEEN report_start_date AND report_end_date)
-    --AND (num_seconds_played_no_ads > 0)
     AND (num_views_started = 1)
-    AND (/*
+    AND NOT(
+        COALESCE(stream_type, "NULL") = 'trailer' 
+        AND (
+            COALESCE(lower(vdo_initiate), "NULL") like ('%auto%play%') 
+            OR 
+            (DATE(adobe_date) >= '2023-03-01' AND COALESCE(LOWER(vdo_initiate), "NULL") = 'n/a')
+        )
+    )
+    /* -- future logic, manual trailers only 
+    WHERE (adobe_date BETWEEN report_start_date AND report_end_date)
+    AND (num_seconds_played_no_ads > 0)
+    AND (num_views_started = 1)
+    AND (
         -- Not a trailer
         (COALESCE(stream_type,"NULL") != 'trailer') 
         OR
         -- If a trailer, must be manual
         ((COALESCE(stream_type,"NULL") = 'trailer') AND (COALESCE(LOWER(vdo_initiate),"NULL") LIKE ('%manual%')))
-        */
-        NOT(COALESCE(stream_type, "NULL") = 'trailer' AND (COALESCE(lower(vdo_initiate), "NULL") like ('%auto%play%') OR ((DATE(adobe_date) >= '2023-03-01' AND COALESCE(LOWER(vdo_initiate), "NULL") = 'n/a'))))
     )
+    */
     GROUP BY 1,2
 
 );
